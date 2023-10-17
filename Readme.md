@@ -69,15 +69,15 @@ Le backend est élaboré à l'aide d'une structure "Clean architecture" très si
 
 ### Bogue 1 : La liste des membres ne retourne pas l'ensemble des membres.
 
-**Description :** Lorsqu'on utilise l'API la liste des membres n'est pas complète, elle devrait cependant retourner l'ensemble des membres.
+**Description :** Lorsqu'on utilise l'API la liste des membres n'est pas complète, elle devrait cependant retourner l'ensemble des membres.  
+
+> **🕥 Suggestion de temps :** 5 minutes
+
+### Bogue 2 : L'application plante lorsque j'essaie de modifier un membre.
+
+**Description :** Lorsque l'on utilise l'API afin de modifier le yanick.rondeau@groupeshift.ca ayant l'id `1` afin de corriger son courriel pour yannick.rondeau@groupeshift.ca, l'application retourne une erreur.
 
 > **🕥 Suggestion de temps :** 10 minutes
-
-### Bogue 2 : L'application plante lorsque j'essaie de supprimer un livre.
-
-**Description :** Lorsqu'un utilisateur accède à la liste des livres et utilise le bouton Supprimer, l'application renvoie une erreur. L'erreur semble provenir du backend, mais nous n'en sommes pas sûrs. L'utilisateur devrait pouvoir supprimer un livre de la liste des livres ou au moins recevoir un message d'erreur approprié.
-
-> **🕥 Suggestion de temps :** 15 minutes
 
 ## 🥳 Fonctionnalités backend à implémenter
 
@@ -98,11 +98,6 @@ Le backend est élaboré à l'aide d'une structure "Clean architecture" très si
 **Description:** L'utilisateur nous a demandé s'il serait possible de voir si un livre est disponible ou non. Un livre est disponible lorsqu’aucun prêt n’y est associé. L'utilisateur souhaite voir ces informations dans la liste des livres et dans les détails du livre.
 
 > **🕥 Suggestion de temps :** 30 minutes
-
-## Questions ouvertes
-
-1. Pouvez-vous citer quelques améliorations que vous aimeriez voir dans cette application ?
-1. Pouvez-vous énumérer certains des problèmes que vous avez rencontrés dans cette application ?
 
 # Test technique frontend
 
@@ -161,3 +156,8 @@ Le projet frontend est élaboré à l'aide de [Vue 3](https://vuejs.org/guide/in
 **Description :** Les utilisateurs aimeraient pouvoir ordonner les livres en ordre alphabétique. Ils doivent également être en mesure de mettre les livres en ordre anti-alphabétique.
 
 > **🕥 Suggestion de temps :** 10 minutes
+
+# Questions ouvertes
+
+1. Pouvez-vous citer quelques améliorations que vous aimeriez voir dans cette application ?
+1. Pouvez-vous énumérer certains des problèmes que vous avez rencontrés dans cette application ?

@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using tech_interview_api.Application.Common;
 using tech_interview_api.Domain;
 using tech_interview_api.Infrastructure.Persistence;
@@ -12,14 +13,18 @@ public class UpdateMemberRequest : IRequest
     public string? PhoneNumber { get; init; }
 }
 
-public class UpdateMemberRequestHandler : IRequestHandler<UpdateMemberRequest>
+public partial class UpdateMemberRequestHandler : IRequestHandler<UpdateMemberRequest>
 {
     private readonly ApplicationDbContext context;
     public UpdateMemberRequestHandler(ApplicationDbContext context) => this.context = context;
 
     public Task<bool> Handle(UpdateMemberRequest request)
     {
-        Member? memberToUpdate = context.Members.Find(request.Id);
+        if (request.PhoneNumber is not null && !Regexes.PhoneNumberRegex().IsMatch(request.PhoneNumber)) { throw new ArgumentException("Phone number must be in this format (xxx) xxx-xxxx"); }
+
+        if (request.EmailAddress is not null && !Regexes.EmailRegex().IsMatch(request.EmailAddress)) { throw new ArgumentException("Email address is not valid"); }
+
+        Member? memberToUpdate = context.Members.Find(request.EmailAddress);
 
         memberToUpdate.Name = request.Name;
         memberToUpdate.EmailAddress = request.EmailAddress;

@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using tech_interview_api.Application.Common;
 using tech_interview_api.Application.Members.Models;
@@ -14,15 +15,18 @@ public class GetMembersRequestHandler : IRequestHandler<GetMembersRequest, List<
 
     public async Task<List<MemberDto>> Handle(GetMembersRequest request)
     {
-        return await context.Members
-            .AsNoTracking()
-            .Select(member => new MemberDto
-            {
-                Id = member.Id,
-                Name = member.Name,
-                EmailAddress = member.EmailAddress,
-                PhoneNumber = member.PhoneNumber
-            })
-            .ToListAsync();
+        return (await context.Members
+                .AsNoTracking()
+                .Select(member => new MemberDto
+                {
+                    Id = member.Id,
+                    Name = member.Name,
+                    EmailAddress = member.EmailAddress,
+                    PhoneNumber = member.PhoneNumber
+                })
+                // match pattern (xxx) xxx-xxxx
+                .ToListAsync())
+            .Where(member => member.PhoneNumber != null && Regexes.PhoneNumberRegex().IsMatch(member.PhoneNumber))
+            .ToList();
     }
 }

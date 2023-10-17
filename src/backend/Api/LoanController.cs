@@ -13,20 +13,4 @@ public class LoanController
 
     [HttpGet]
     public IEnumerable<Loan> Get() => applicationDbContext.Loans;
-
-    [HttpPost]
-    public Loan Post(Loan loan)
-    {
-        applicationDbContext.Loans.Add(loan);
-        applicationDbContext.SaveChanges();
-        return loan;
-    }
-
-    [HttpPut("{id:int}")]
-    public Loan Put(int id, Loan loan)
-    {
-        applicationDbContext.Loans.Update(loan);
-        applicationDbContext.SaveChanges();
-        return loan;
-    }
 }

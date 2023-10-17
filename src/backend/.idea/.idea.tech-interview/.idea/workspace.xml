@@ -55,9 +55,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "/Users/blep/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
-      "/Users/blep/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache",
-      "/Users/blep/.local/share/Symbols/src"
+      "/Users/yannickrondeau/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
+      "/Users/yannickrondeau/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
+      "/Users/yannickrondeau/.local/share/Symbols/src"
     ]
   }
 }]]></component>
@@ -104,6 +104,7 @@
       <workItem from="1697339181853" duration="2921000" />
       <workItem from="1697346931356" duration="5330000" />
       <workItem from="1697478974965" duration="7557000" />
+      <workItem from="1697564954012" duration="2487000" />
     </task>
     <servers />
   </component>
