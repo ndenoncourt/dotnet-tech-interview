@@ -24,9 +24,8 @@ public class GetMembersRequestHandler : IRequestHandler<GetMembersRequest, List<
                     EmailAddress = member.EmailAddress,
                     PhoneNumber = member.PhoneNumber
                 })
-                // match pattern (xxx) xxx-xxxx
                 .ToListAsync())
-            .Where(member => member.PhoneNumber != null && Regexes.PhoneNumberRegex().IsMatch(member.PhoneNumber))
+            .Where(member => Regexes.PhoneNumberRegex().IsMatch(member.PhoneNumber))
             .ToList();
     }
 }

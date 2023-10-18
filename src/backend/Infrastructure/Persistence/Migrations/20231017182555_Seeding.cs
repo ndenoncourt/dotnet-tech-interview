@@ -32,7 +32,7 @@ namespace tech_interview_api.Infrastructure.Persistence.Migrations
                 {
                     { 100, "yanick.rondeau@groupehsift.ca", "Yannick R", "(819) 247-4214" },
                     { 200, "john.doe@gmail.com", "John Doe", "(819) 555-5555" },
-                    { 300, "Jane.D@outlook.com", "Jane Doe", null }
+                    { 300, "Jane.D@outlook.com", "Jane Doe", "" }
                 });
 
             migrationBuilder.InsertData(

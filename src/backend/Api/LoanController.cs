@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using tech_interview_api.Domain;
-using tech_interview_api.Infrastructure.Persistence;
+using tech_interview_api.Application.Loans.Commands;
+using tech_interview_api.Application.Loans.Models;
 
 namespace tech_interview_api.Api;
 
@@ -8,9 +8,9 @@ namespace tech_interview_api.Api;
 [Route("[controller]")]
 public class LoanController
 {
-    private readonly ApplicationDbContext applicationDbContext;
-    public LoanController(ApplicationDbContext applicationDbContext) => this.applicationDbContext = applicationDbContext;
+    private readonly GetLoansCommandHandler getLoansCommandHandler;
+    public LoanController(GetLoansCommandHandler getLoansCommandHandler) => this.getLoansCommandHandler = getLoansCommandHandler;
 
     [HttpGet]
-    public IEnumerable<Loan> Get() => applicationDbContext.Loans;
+    public async Task<List<LoanDto>> Get() => await getLoansCommandHandler.Handle(new GetLoansCommand());
 }

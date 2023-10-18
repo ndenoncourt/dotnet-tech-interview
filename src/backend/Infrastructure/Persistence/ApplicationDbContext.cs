@@ -25,7 +25,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Member>().HasData(
             new Member { Id = 100, Name = "Yannick R", EmailAddress = "yanick.rondeau@groupehsift.ca", PhoneNumber = "(819) 247-4214" },
             new Member { Id = 200, Name = "John Doe", EmailAddress = "john.doe@gmail.com", PhoneNumber = "(819) 555-5555" },
-            new Member { Id = 300, Name = "Jane Doe", EmailAddress = "Jane.D@outlook.com", PhoneNumber = null }
+            new Member { Id = 300, Name = "Jane Doe", EmailAddress = "Jane.D@outlook.com", PhoneNumber = "" }
         );
 
         modelBuilder.Entity<Loan>().HasData(

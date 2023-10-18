@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using tech_interview_api.Domain;
-using tech_interview_api.Infrastructure.Persistence;
+using tech_interview_api.Application.Books.Commands;
+using tech_interview_api.Application.Books.Models;
 
 namespace tech_interview_api.Api;
 
@@ -8,33 +8,33 @@ namespace tech_interview_api.Api;
 [Route("[controller]")]
 public class BookController
 {
-    private readonly ApplicationDbContext applicationDbContext;
-    public BookController(ApplicationDbContext applicationDbContext) => this.applicationDbContext = applicationDbContext;
+    private readonly GetBooksCommandHandler getBooksCommandHandler;
+    private readonly CreateBookCommandHandler createBookCommandHandler;
+    private readonly UpdateBookCommandHandler updateBookCommandHandler;
+    private readonly RemoveBookCommandHandler removeBookCommandHandler;
+
+    public BookController(
+        GetBooksCommandHandler getBooksCommandHandler,
+        CreateBookCommandHandler createBookCommandHandler,
+        UpdateBookCommandHandler updateBookCommandHandler,
+        RemoveBookCommandHandler removeBookCommandHandler
+    )
+    {
+        this.getBooksCommandHandler = getBooksCommandHandler;
+        this.createBookCommandHandler = createBookCommandHandler;
+        this.updateBookCommandHandler = updateBookCommandHandler;
+        this.removeBookCommandHandler = removeBookCommandHandler;
+    }
 
     [HttpGet]
-    public IEnumerable<Book> Get() => applicationDbContext.Books;
+    public async Task<List<BookDto>> Get() => await getBooksCommandHandler.Handle(new GetBooksCommand());
 
     [HttpPost]
-    public Book Post(Book book)
-    {
-        applicationDbContext.Books.Add(book);
-        applicationDbContext.SaveChanges();
-        return book;
-    }
+    public async Task<BookDto> Post(CreateBookCommand book) => await createBookCommandHandler.Handle(book);
 
     [HttpPut("{id:int}")]
-    public Book Put(int id, Book book)
-    {
-        applicationDbContext.Books.Update(book);
-        applicationDbContext.SaveChanges();
-        return book;
-    }
+    public async Task<BookDto> Put(UpdateBookCommand book) => await updateBookCommandHandler.Handle(book);
 
-    [HttpDelete("{id}")]
-    public void Delete(int id)
-    {
-        Book? book = applicationDbContext.Books.Find(id);
-        applicationDbContext.Books.Remove(book);
-        applicationDbContext.SaveChanges();
-    }
+    [HttpDelete("{id:int}")]
+    public async Task Delete(int id) => await removeBookCommandHandler.Handle(new RemoveBookCommand { Id = id });
 }

@@ -18,20 +18,20 @@ public partial class UpdateMemberRequestHandler : IRequestHandler<UpdateMemberRe
     private readonly ApplicationDbContext context;
     public UpdateMemberRequestHandler(ApplicationDbContext context) => this.context = context;
 
-    public Task<bool> Handle(UpdateMemberRequest request)
+    public async Task<bool> Handle(UpdateMemberRequest request)
     {
         if (request.PhoneNumber is not null && !Regexes.PhoneNumberRegex().IsMatch(request.PhoneNumber)) { throw new ArgumentException("Phone number must be in this format (xxx) xxx-xxxx"); }
 
         if (request.EmailAddress is not null && !Regexes.EmailRegex().IsMatch(request.EmailAddress)) { throw new ArgumentException("Email address is not valid"); }
 
-        Member? memberToUpdate = context.Members.Find(request.EmailAddress);
+        Member? memberToUpdate = await context.Members.FindAsync(request.EmailAddress);
 
         memberToUpdate.Name = request.Name;
         memberToUpdate.EmailAddress = request.EmailAddress;
         memberToUpdate.PhoneNumber = request.PhoneNumber;
         context.Members.Update(memberToUpdate);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
 
-        return Task.FromResult(true);
+        return true;
     }
 }

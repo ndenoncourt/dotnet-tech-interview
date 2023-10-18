@@ -24,7 +24,7 @@ public class MemberController
     }
 
     [HttpGet]
-    public IEnumerable<MemberDto> Get() => getMembersRequestHandler.Handle(new GetMembersRequest()).Result;
+    public List<MemberDto> Get() => getMembersRequestHandler.Handle(new GetMembersRequest()).Result;
 
     [HttpPost]
     public bool Post(CreateMemberRequest createMemberRequest) => createMemberRequestHandler.Handle(createMemberRequest).Result;

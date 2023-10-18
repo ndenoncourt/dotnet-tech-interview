@@ -4,7 +4,9 @@ Bienvenue à l'entrevue technique de Groupe Shift.
 
 Ce document vous guidera à travers les questions de l'entrevue technique. Le but de cet entretien est d'évaluer vos compétences techniques et votre capacité à résoudre différents problèmes que nous résolvons habituellement dans notre travail quotidien. Gardez à l’esprit qu’il n’est pas nécessaire de résoudre tous les problèmes et que vous devez viser la qualité plutôt que la quantité.
 
-Vous devez également garder à l’esprit que l’intervieweur est là pour vous aider et que vous ne devez pas hésiter à demander de l’aide si vous êtes bloqué. **Chaque question est accompagnée d'une suggestion de temps**, si vous êtes bloqué sur une question, vous devez demander de l'aide à l'intervieweur. Cela garantira que vous disposerez de suffisamment de temps pour terminer le reste de l'interview.
+Vous devez également garder à l’esprit que l’intervieweur est là pour vous aider et que vous ne devez pas hésiter à demander de l’aide si vous êtes bloqué. **Chaque question est accompagnée d'une suggestion de temps**. Si vous êtes bloqué sur une question, vous devez demander de l'aide à l'intervieweur. Cela garantira que vous disposerez de suffisamment de temps pour terminer le reste de l'interview.
+
+Notez que vous pouvez utiliser **Google, StackOverflow, ChatGPT, etc.** pour vous aider à résoudre les problèmes. Vous pouvez également demander de l'aide à l'intervieweur si vous êtes bloqué. De plus, il est fortement conseillé de laisser des commentaires dans votre code lorsque vous le jugez nécessaire. Les commentaires peuvent aussi être utilisé afin d'**expliquer votre raisonnement si vous n'arrivez pas à résoudre un problème.**
 
 ## Table des matières
 
@@ -63,19 +65,21 @@ Bonne chance ! 🎉
 
 # Test technique backend
 
-Le backend est élaboré à l'aide d'une structure "Clean architecture" très simplifiée. Si vous n'avez jamais travaillé avec le Clean architecture ou que vous avez besoin d'information supplémentaire, utilisez [la documentation suivante](./docs/Backend.md).
+Le backend est élaboré à l'aide d'une structure "Clean architecture" très simplifiée. Si vous n'avez jamais travaillé avec le Clean architecture ou que vous avez besoin d'information supplémentaire, utilisez [la documentation suivante](./docs/Backend.md). Comme mentionné plus haut, vous devrez, tout au long des tests backend utiliser l'interface Swagger UI qui vous permettra de tester l'API, l'url est `http://localhost:5008/swagger/index.html`.
+
+Swagger vous permet de tester les différents points de terminaison de l'API. Vous pouvez également utiliser Postman ou tout autre outil de votre choix au besoin. Si vous avez des questions sur cette partie, n'hésitez surtout pas à demander à l'intervieweur.
 
 ## 🐞 Bogues backend à corriger
 
 ### Bogue 1 : La liste des membres ne retourne pas l'ensemble des membres.
 
-**Description :** Lorsqu'on utilise l'API la liste des membres n'est pas complète, elle devrait cependant retourner l'ensemble des membres.  
+**Description :** Lorsqu'on utilise l'API la liste des membres n'est pas complète, elle devrait cependant retourner tous les membres de l'application, **sans exception**.
 
 > **🕥 Suggestion de temps :** 5 minutes
 
 ### Bogue 2 : L'application plante lorsque j'essaie de modifier un membre.
 
-**Description :** Lorsque l'on utilise l'API afin de modifier le yanick.rondeau@groupeshift.ca ayant l'id `1` afin de corriger son courriel pour yannick.rondeau@groupeshift.ca, l'application retourne une erreur.
+**Description :** Lorsque l'on utilise l'API afin de modifier le membre yanick.rondeau@groupeshift.ca ayant l'id `100` afin de corriger son courriel pour yannick.rondeau@groupeshift.ca, l'application retourne une erreur.
 
 > **🕥 Suggestion de temps :** 10 minutes
 

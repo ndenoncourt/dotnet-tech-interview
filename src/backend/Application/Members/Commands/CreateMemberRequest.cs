@@ -25,7 +25,7 @@ public class CreateMemberRequestHandler : IRequestHandler<CreateMemberRequest>
             PhoneNumber = request.PhoneNumber
         };
 
-        context.Members.Add(member);
+        await context.Members.AddAsync(member);
         return await context.SaveChangesAsync() > 0;
     }
 }
