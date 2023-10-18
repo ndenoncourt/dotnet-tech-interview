@@ -21,7 +21,7 @@ withDefaults(
       type="number"
       min="1"
       :model-value="modelValue.id.toString()"
-      @update:model-value="(id) => emit('update:modelValue', { ...modelValue, id: parseInt(id) })"
+      @update:model-value="(id) => (modelValue.id = parseInt(id))"
     />
     <template #validation>Obligatoire, unique</template>
   </Field>

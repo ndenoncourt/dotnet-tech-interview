@@ -6,6 +6,8 @@ import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 const bookStore = useBookStore()
+bookStore.fetch()
+
 const router = useRouter()
 
 const book = ref<Book>({
@@ -14,6 +16,7 @@ const book = ref<Book>({
   author: ''
 })
 
+// Ne pas retirer.
 watch(book, () => console.log(`Une modification est survenue!`, book.value))
 
 const isValid = computed(
@@ -25,6 +28,8 @@ const isValid = computed(
 )
 
 async function handleCreate() {
+  if (!isValid.value) return
+
   const id = await bookStore.create(book.value)
   router.push({ name: 'book_update', params: { id } })
 }

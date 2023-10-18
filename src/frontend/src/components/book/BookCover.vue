@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <BookCoverBase>
-    <span class="text-xl font-bold">{{ title }}</span>
-    <span class="text-sm text-white/50">{{ author }}</span>
+    <span class="font-bold text-ellipsis line-clamp-3" :title="title">{{ title }}</span>
+    <span class="text-sm text-white/50 line-clamp-1" :title="author">{{ author }}</span>
   </BookCoverBase>
 </template>

@@ -27,9 +27,7 @@ Notez que vous pouvez utiliser **Google, StackOverflow, ChatGPT, etc.** pour vou
    1. [🐞 Bogues frontend à corriger](#🐞-bogues-frontend-à-corriger)
       1. [Bogue 1 : La liste n'affiche pas de chargement](#bogue-1--la-liste-naffiche-pas-de-chargement)
       2. [Bogue 2 : Les utilisateurs sont incapable de créer un livre.](#bogue-2--les-utilisateurs-sont-incapable-de-créer-un-livre)
-      3. [Bogue 3 : La sauvegarde est possible même si les données sont invalides.](#bogue-3--la-sauvegarde-est-possible-même-si-les-données-sont-invalides)
-      4. [Bogue 4 : La validation d'identifiant unique ne fonctionne pas.](#bogue-4--la-validation-didentifiant-unique-ne-fonctionne-pas)
-      5. [Bogue 5 : La réactivité du livre est dysfonctionnelle.](#bogue-5--la-réactivité-du-livre-est-dysfonctionnelle)
+      3. [Bogue 3 : La réactivité du livre est dysfonctionnelle.](#bogue-3--la-réactivité-du-livre-est-dysfonctionnelle)
    2. [🥳 Fonctionnalités frontend à implémenter](#🥳-fonctionnalités-frontend-à-implémenter)
       1. [Fonctionnalité 1 : En tant qu'utilisateur, j'aimerais pouvoir supprimer un livre.](#fonctionnalité-1--en-tant-quutilisateur-jaimerais-pouvoir-supprimer-un-livre)
       2. [Fonctionnalité 2 : En tant qu'utilisateur, j'aimerais pouvoir chercher un livre.](#fonctionnalité-2--en-tant-quutilisateur-jaimerais-pouvoir-chercher-un-livre)
@@ -53,7 +51,12 @@ Notez que vous pouvez utiliser **Google, StackOverflow, ChatGPT, etc.** pour vou
 
 ## Étape 3 : Installer les dépendances et démarrer le frontend.
 
-**Description :** La troisième étape consiste à installer les dépendances du frontend à l'aide de `npm i` (Node.js est requis). Vous pouvez ensuite démarrer l'application frontend en utilisant `npm run dev`.
+**Description :** La troisième étape consiste à installer les dépendances du frontend à l'aide de `npm i` (Node.js est requis). Vous pouvez ensuite démarrer l'application frontend en utilisant `npm run dev` et vous rendre à l'addresse `http://localhost:5173/`.
+
+> **💡 Conseil :** Si vous avez **peu d'expérience avec Vue** ou que vous n'avez **jamais utilisé le [Composition API](https://vuejs.org/guide/extras/composition-api-faq.html#what-is-composition-api)**, nous suggérons fortement l'utilisation de [Visual Studio Code](https://code.visualstudio.com/) ainsi que des extensions suivantes:
+>
+> - [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+> - [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
 > **🕥 Suggestion de temps :** 10 minutes
 
@@ -105,7 +108,7 @@ Swagger vous permet de tester les différents points de terminaison de l'API. Vo
 
 # Test technique frontend
 
-Le projet frontend est élaboré à l'aide de [Vue 3](https://vuejs.org/guide/introduction.html), [TailwindCSS](https://tailwindcss.com/docs/installation) et [Pinia](https://pinia.vuejs.org/introduction.html). L'utilisation de Visual Studio Code est suggéré mais n'est pas obligatoire.
+Le projet frontend est élaboré à l'aide de [Vue 3](https://vuejs.org/guide/introduction.html), [TailwindCSS](https://tailwindcss.com/docs/installation) et [Pinia](https://pinia.vuejs.org/introduction.html). [Tel que mentionné précédemment](#étape-3--installer-les-dépendances-et-démarrer-le-frontend), l'utilisation de Visual Studio Code est suggéré mais n'est pas obligatoire.
 
 ## 🐞 Bogues frontend à corriger
 
@@ -121,25 +124,11 @@ Le projet frontend est élaboré à l'aide de [Vue 3](https://vuejs.org/guide/in
 
 > **🕥 Suggestion de temps :** 5 minutes
 
-### Bogue 3 : La sauvegarde est possible même si les données sont invalides.
-
-**Description :** Malgré que le bouton est grisé, l'utilisateur est en mesure de créer un livre alors qu'il n'est pas valide (`BookCreateView.vue`). Il peut également enregister des modifications sans quelles soient valides (`BookUpdateView.vue`). Il faut empêcher l'utilisateur de soumettre lorsque des données ne sont pas valides.
-
-> **🕥 Suggestion de temps :** 5 minutes
-
-### Bogue 4 : La validation d'identifiant unique ne fonctionne pas.
-
-**Description :** Lorsque l'utilisateur charge directement la page de création de livre, sans passer par la liste des livres, l'utilisateur est capable d'entrer un id existant et le bouton s'active malgré tout. Il faut corriger la validation pour empêcher l'utilisation d'identifiant existant dans ce cas.
-
-> **💡 Conseil :** Pour reproduire la problématique, il faut charger directement la page http://localhost:5173/book/create. Étrangement, lorsqu'on passe par la liste, la validation fonctionne !
-
-> **🕥 Suggestion de temps :** 5 minutes
-
-### Bogue 5 : La réactivité du livre est dysfonctionnelle.
+### Bogue 3 : La réactivité du livre est dysfonctionnelle.
 
 **Description :** À des fins de déboggage, un `console.log` est présent dans `BookCreateView.vue`. En temps normal, un "log" devrait apparaitre dans la console du navigateur à chaque fois qu'une modification est effectuée sur le livre. Par exemple, entrer le titre "Livre" devrait engendrer l'écriture de 5 lignes dans la console mais ça ne semble pas être le cas. Il faut corriger le problème afin qu'un `console.log` soit effectué à chaque fois qu'une modification est apportée au livre.
 
-> **🕥 Suggestion de temps :** 15 minutes
+> **🕥 Suggestion de temps :** 5 minutes
 
 ## 🥳 Fonctionnalités frontend à implémenter
 

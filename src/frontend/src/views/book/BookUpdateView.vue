@@ -5,13 +5,12 @@ import { useRoute, useRouter } from 'vue-router'
 import BookForm from '@/components/book/BookForm.vue'
 import Button, { ButtonStylingMode } from '@/components/Button.vue'
 
+const router = useRouter()
 const route = useRoute()
 const id = route.params.id as string
 
 const bookStore = useBookStore()
 const book = ref<Book>()
-
-const router = useRouter()
 
 const isValid = computed(
   () => book.value && book.value.title.trim().length > 0 && book.value.author.trim().length > 0
@@ -21,18 +20,16 @@ onMounted(async () => {
   try {
     await bookStore.fetch()
     book.value = bookStore.books.find((x) => x.id === parseInt(id))
-    if (!book.value) {
-      throw 'Book not found'
-    }
+    if (!book.value) throw 'Book not found'
   } catch {
     return router.push({ name: 'book_list' })
   }
 })
 
 async function handleUpdate() {
-  if (!book.value) {
-    throw 'Book not found'
-  }
+  if (!isValid.value) return
+  if (!book.value) throw 'Book not found'
+
   await bookStore.update(book.value)
   router.push({ name: 'book_list' })
 }
