@@ -16,6 +16,10 @@ public class GetBooksCommandHandler : IRequestHandler<GetBooksCommand, List<Book
     {
         Id = book.Id,
         Title = book.Title,
-        Author = book.Author
-    }).ToListAsync();
+        Author = book.Author,
+        IsAvailable = !applicationDbContext.Loans
+            .Any(loan => loan.BookId == book.Id &&
+                         loan.ReturnDate == null &&
+                         loan.LoanDate <= DateTime.Now)
+    }).OrderBy(book => book.Title).ToListAsync();
 }

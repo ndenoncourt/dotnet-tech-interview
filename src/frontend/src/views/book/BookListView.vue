@@ -19,6 +19,7 @@ bookStore.fetch()
         class="cursor-pointer"
         :title="book.title"
         :author="book.author"
+        :isAvailable="book.isAvailable"
         @click="router.push({ name: 'book_update', params: { id: book.id } })"
       />
       <BookCoverAdd />

@@ -24,7 +24,7 @@ public partial class UpdateMemberRequestHandler : IRequestHandler<UpdateMemberRe
 
         if (request.EmailAddress is not null && !Regexes.EmailRegex().IsMatch(request.EmailAddress)) { throw new ArgumentException("Email address is not valid"); }
 
-        Member? memberToUpdate = await context.Members.FindAsync(request.EmailAddress);
+        Member? memberToUpdate = await context.Members.FindAsync(request.Id);
 
         memberToUpdate.Name = request.Name;
         memberToUpdate.EmailAddress = request.EmailAddress;

@@ -31,7 +31,11 @@ public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, BookD
         {
             Id = book.Id,
             Title = book.Title,
-            Author = book.Author
+            Author = book.Author,
+            IsAvailable = !applicationDbContext.Loans
+                .Any(loan => loan.BookId == book.Id &&
+                             loan.ReturnDate == null &&
+                             loan.LoanDate <= DateTime.Now)
         };
     }
 }
