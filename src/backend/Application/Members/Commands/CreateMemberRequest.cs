@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using tech_interview_api.Application.Common;
+using tech_interview_api.Application.Members.Models;
 using tech_interview_api.Domain;
 using tech_interview_api.Infrastructure.Persistence;
 
@@ -18,14 +20,28 @@ public class CreateMemberRequestHandler : IRequestHandler<CreateMemberRequest>
 
     public async Task<bool> Handle(CreateMemberRequest request)
     {
-        var member = new Member
-        {
-            Name = request.Name,
-            EmailAddress = request.EmailAddress,
-            PhoneNumber = request.PhoneNumber
-        };
+        var count = context.Members
+                .Select(member => new MemberDto
+                {
+                    Id = member.Id,
+                    Name = member.Name,
+                    EmailAddress = member.EmailAddress,
+                    PhoneNumber = member.PhoneNumber
+                })
+                .Where(member => member.EmailAddress == request.EmailAddress)
+                .Count();
 
-        await context.Members.AddAsync(member);
+        if (count == 0) {
+            var member = new Member
+            {
+                Name = request.Name,
+                EmailAddress = request.EmailAddress,
+                PhoneNumber = request.PhoneNumber
+            };
+
+            await context.Members.AddAsync(member);
+        }
+
         return await context.SaveChangesAsync() > 0;
     }
 }

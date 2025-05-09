@@ -30,7 +30,11 @@ public class UpdateBookCommandHandler : IRequestHandler<UpdateBookCommand, BookD
         {
             Id = bookToUpdate.Id,
             Title = bookToUpdate.Title,
-            Author = bookToUpdate.Author
+            Author = bookToUpdate.Author,
+            IsAvailable = !applicationDbContext.Loans
+                .Any(loan => loan.BookId == bookToUpdate.Id &&
+                             loan.ReturnDate == null &&
+                             loan.LoanDate <= DateTime.Now)
         };
     }
 }
