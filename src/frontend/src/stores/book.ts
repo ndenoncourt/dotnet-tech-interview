@@ -5,7 +5,7 @@ import { sleep } from '@/utils/sleep'
 
 export const useBookStore = defineStore('book', () => {
   const books = ref<Book[]>([])
-  const isLoading = ref(false)
+  const isLoading = ref(true)
 
   return {
     books,
@@ -15,6 +15,7 @@ export const useBookStore = defineStore('book', () => {
       const { data } = await axios.get<Book[]>('/book')
       await sleep(500) // Peut être utilisé pour tester le "chargement".
       books.value = data
+      isLoading.value = false
     },
     create: async (book: Book) => {
       const { data: id } = await axios.post('/book', book)

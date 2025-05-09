@@ -13,11 +13,14 @@ const router = useRouter()
 const book = ref<Book>({
   id: 1,
   title: '',
-  author: ''
+  author: '',
+  isAvailable: true
 })
 
 // Ne pas retirer.
-watch(book, () => console.log(`Une modification est survenue!`, book.value))
+watch(book, () => {
+  console.log("Une modification est survenue!", book.value)
+}, { deep: true })
 
 const isValid = computed(
   () =>
